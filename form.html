@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FORM</title>
+    <link rel="stylesheet" href="form.css">
+    <script>
+      function check(e) {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var email = document.getElementById("email").value;
+        var number = document.getElementById("pno").value; // corrected id to "pno"
+        var age = document.getElementById("num").value; // corrected id to "num"
+        var cpassword = document.getElementById("c-password").value;
+        var postal = document.getElementById("p-code").value;
+        var em = /^[\w.-]*@[\w.-]+\.[a-zA-Z]{2,}$/;
+        let valid = true;
+        if(username == "" || email == "" || password == "" || number == "" || age == ""){
+          alert("no blancks allowed");
+          valid = false;
+          
+        }
+        if (username.length < 8 || username.length > 32) {
+          alert("Enter username with proper length")
+          valid = false;
+        }
+        if(!(email.match(em))){
+        alert("ERROR - EMAIL FORMAT SHOULD BE LIKE CARSTOCK@GMAIL.COM");
+        valid = false;
+        }
+        if (password.length < 6 || password.length >20 ){
+          alert("Enter proper password");
+          valid = false;
+        }
+        if(password != cpassword){
+          alert("Password does not match");
+          valid = false;
+        }
+        if(number.length != 10){
+          alert("phone number should be less than 10 digits");
+          valid = false;
+        }
+        if( age < 18){
+          alert("age less than 18 not allowed to login");
+          valid = false;
+        }
+        if(postal.length < 6){
+          alert("Postal code should be equal to 6 digits");
+          valid = false;
+        }
+        if( valid === false){
+          e.preventDefault();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="main">
+      <form id="form" action="jav.html" method="post">
+        <h1>USER SIGN IN </h1>
+        <div class="content">
+          <div class="input-group">
+            <label for="username">USERNAME</label>
+            <input type="text" id="username" name="username">
+            <div id="uerror" style="color: red;"></div>
+          </div>
+          <div class="input-group">
+            <label for="email">EMAIL</label>
+            <input type="text" id="email" name="email">
+          </div>
+          <div class="input-group">
+            <label for="password">PASSWORD</label>
+            <input type="password" id="password" name="password">
+            <div id="perror" style="color: red;"></div>
+          </div>
+          <div class="input-group">
+            <label for="c-password">CONFORM PASSWORD</label>
+            <input type="password" id="c-password" name="c-password">
+          </div>
+          <div class="input-group">
+            <label for="pno">P.NO</label>
+            <input type="number" id="pno" name="pno">
+          </div>
+          <div class="input-group">
+            <label for="age">AGE</label>
+            <input type="number" id="num" name="num">
+          </div>
+          <div class="input-group">
+            <label for="s-address">STREE ADDRESS</label>
+            <input type="text" id="s-address" name="s-address">
+          </div>
+          <div class="input-group">
+            <label for="city">CITY</label>
+            <input type="text" id="city" name="city">
+          </div>
+          <div class="input-group">
+            <label for="p-code">POSTAL CODE</label>
+            <input type="number" id="p-code" name="p-code">
+          </div>
+          <div class="input-group">
+            <label for="country">COUNTRY</label>
+            <input type="text" id="country" name="country">
+          </div>
+          <button type="submit" onclick="return check(event)">SUBMIT</button>
+          <button type="reset">RESET</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
